@@ -87,16 +87,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use((req, res, next) => {
-  if (req.path === '/api/upload') {
-    // Multer multipart/form-data handling needs to occur before the Lusca CSRF check.
-    next();
-  } else {
-    lusca.csrf()(req, res, next);
-  }
-});
-app.use(lusca.xframe('SAMEORIGIN'));
-app.use(lusca.xssProtection(true));
+// app.use((req, res, next) => {
+//   if (req.path === '/api/upload') {
+//     // Multer multipart/form-data handling needs to occur before the Lusca CSRF check.
+//     next();
+//   } else {
+//     lusca.csrf()(req, res, next);
+//   }
+// });
+// app.use(lusca.xframe('SAMEORIGIN'));
+// app.use(lusca.xssProtection(true));
 app.disable('x-powered-by');
 app.use((req, res, next) => {
   res.locals.user = req.user;
@@ -126,7 +126,16 @@ app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawes
 /**
  * Primary app routes.
  */
-app.get('/', homeController.index);
+
+
+//  exports.index = (req, res) => {
+  app.use(express.static('./dist/'));
+  app.get('/', function(req, res) {
+      res.sendFile('index.html', {root: 'dist/'}
+    );
+    });
+// };
+// app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
@@ -172,8 +181,8 @@ app.get('/api/paypal', apiController.getPayPal);
 app.get('/api/paypal/success', apiController.getPayPalSuccess);
 app.get('/api/paypal/cancel', apiController.getPayPalCancel);
 app.get('/api/lob', apiController.getLob);
-app.get('/api/upload', lusca({ csrf: true }), apiController.getFileUpload);
-app.post('/api/upload', upload.single('myFile'), lusca({ csrf: true }), apiController.postFileUpload);
+app.get('/api/upload', lusca({ csrf: false }), apiController.getFileUpload);
+app.post('/api/upload', upload.single('myFile'), lusca({ csrf: false }), apiController.postFileUpload);
 app.get('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.getPinterest);
 app.post('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.postPinterest);
 app.get('/api/here-maps', apiController.getHereMaps);

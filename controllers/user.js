@@ -33,7 +33,7 @@ exports.postLogin = (req, res, next) => {
 
   if (validationErrors.length) {
     req.flash('errors', validationErrors);
-    return res.redirect('/login');
+    return res.send({messsage: validationErrors, status: 'failed'});
   }
   req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
 
@@ -41,12 +41,12 @@ exports.postLogin = (req, res, next) => {
     if (err) { return next(err); }
     if (!user) {
       req.flash('errors', info);
-      return res.redirect('/login');
+      return res.send({message: info, status: 'failed'});
     }
     req.logIn(user, (err) => {
       if (err) { return next(err); }
       req.flash('success', { msg: 'Success! You are logged in.' });
-      res.redirect(req.session.returnTo || '/');
+      res.send(user);
     });
   })(req, res, next);
 };
@@ -89,7 +89,7 @@ exports.postSignup = (req, res, next) => {
 
   if (validationErrors.length) {
     req.flash('errors', validationErrors);
-    return res.redirect('/signup');
+    return res.send({error:validationErrors});
   }
   req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
 
@@ -102,7 +102,7 @@ exports.postSignup = (req, res, next) => {
     if (err) { return next(err); }
     if (existingUser) {
       req.flash('errors', { msg: 'Account with that email address already exists.' });
-      return res.redirect('/signup');
+      return res.send({message: 'Account with that email address already exists.', status: 'failed'});
     }
     user.save((err) => {
       if (err) { return next(err); }
@@ -110,7 +110,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        res.redirect('/');
+        res.send({message: 'User Successfully Created', status: 'success'});
       });
     });
   });
