@@ -67,7 +67,16 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 // mongoose.connect('mongodb+srv://admin:admin@cluster0.tdyon.mongodb.net/prohitibiton_test?retryWrites=true&w=majority')
-mongoose.connect(process.env.MONGODB_URI);
+if(process.env.ENVIRONMENT === 'DEV') {
+  console.log('Local DB Connected ', chalk.green('✓ ✓ ✓ '))
+  mongoose.connect(process.env.LOCAL_MONGODB_URI);
+} else if(process.env.ENVIRONMENT === 'PROD') {
+  console.log('PROD DB Connected ', chalk.green('✓ ✓ ✓ '))
+
+  mongoose.connect(process.env.PROD_MONGODB_URI);
+}
+
+
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
@@ -296,9 +305,20 @@ if (process.env.NODE_ENV === 'development') {
 /**
  * Start Express server.
  */
-app.listen(process.env.PORT || 8080, () => {
-  console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
-  console.log('  Press CTRL-C to stop\n');
-});
+
+
+if(process.env.ENVIRONMENT === 'DEV') {
+  app.listen(app.get('port'), () => {
+    console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
+    console.log('  Press CTRL-C to stop\n');
+  });
+  
+} else if(process.env.ENVIRONMENT === 'PROD') {
+  app.listen(process.env.PORT || 8080, () => {
+    console.log('%s App is running https://madhnished.herokuapp.com:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
+    console.log('  Press CTRL-C to stop\n');
+  });
+  
+}
 
 module.exports = app;
