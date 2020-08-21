@@ -62,10 +62,10 @@ app.use(function (req, res, next) {
 /**
  * Connect to MongoDB.
  */
-mongoose.set('useFindAndModify', false);
+// mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
+// mongoose.set('useNewUrlParser', true);
+// mongoose.set('useUnifiedTopology', true);
 mongoose.connect('mongodb+srv://admin:admin@cluster0.tdyon.mongodb.net/prohitibiton_test?retryWrites=true&w=majority')
 // mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on('error', (err) => {
@@ -79,8 +79,8 @@ mongoose.connection.on('error', (err) => {
  */
 
 app.use(fileUpload());
-// app.set('host', process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0');
-// app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080);
+app.set('host', process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0');
+app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(expressStatusMonitor());
