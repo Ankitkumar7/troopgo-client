@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"mdl-card mdl-card__blank-layout-card mdl-shadow--2dp\">\n  <div class=\"mdl-card__supporting-text color--dark-gray\">\n    <div class=\"mdl-grid\">\n      <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n        <span class=\"mdl-card__title-text text-color--smooth-gray\">DARKBOARD</span>\n      </div>\n      <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n        <span class=\"blank-layout-card-name text-color--white\">Sign in</span>\n        <span class=\"blank-layout-card-secondary-text text-color--smoke\">Enter fields to sign in to DARKBOARD</span>\n      </div>\n      <form class=\"login-form\" [formGroup]=\"loginForm\" (submit)=\"login()\" autocomplete=\"off\" novalidate>\n        <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n          <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size\"\n               [class.is-invalid]=\"email.invalid && (email.dirty || email.touched)\"\n               [class.is-valid]=\"email.valid && (email.dirty || email.touched)\">\n            <input formControlName=\"email\"\n                   pattern=\"{{emailPattern}}\"\n                   (change)=\"onInputChange($event)\"\n                   class=\"mdl-textfield__input\" type=\"text\" id=\"email\">\n            <label class=\"mdl-textfield__label\" for=\"email\">Email</label>\n\n            <div *ngIf=\"email.invalid && (email.dirty || email.touched)\">\n              <span *ngIf=\"email.errors.required\" class=\"mdl-textfield__error\">\n                Email is required. <span class=\"color-text--orange\"> Please, write any valid email.</span>\n              </span>\n              <span *ngIf=\"email.errors.pattern\" class=\"mdl-textfield__error\">\n                Email is invalid.\n              </span>\n            </div>\n          </div>\n\n          <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size\"\n               [class.is-invalid]=\"password.invalid && (password.dirty || password.touched)\"\n               [class.is-valid]=\"password.valid && (password.dirty || password.touched)\"\n               id=\"forPass\">\n            <input formControlName=\"password\"\n                   (change)=\"onInputChange($event)\"\n                   class=\"mdl-textfield__input\" type=\"password\" id=\"password\">\n            <label class=\"mdl-textfield__label\" for=\"password\">Password</label>\n            <div *ngIf=\"password.invalid && (password.dirty || password.touched)\">\n              <span *ngIf=\"password.errors.required\" class=\"mdl-textfield__error\">\n                Password is required. <span class=\"color-text--orange\"> Please, write any password.</span>\n              </span>\n            </div>\n          </div>\n\n          <div class=\"full-size color-text--red\" *ngIf=\"error\"> {{ error }}</div>\n\n          <a routerLink=\"/pages/forgot-password\" class=\"blank-layout-card-link\">Forgot password?</a>\n        </div>\n        <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell\">\n          <a routerLink=\"/pages/sign-up\" class=\"blank-layout-card-link\">Don't have account?</a>\n          <div class=\"mdl-layout-spacer\"></div>\n          <button class=\"mdl-button mdl-js-button mdl-button--raised color--light-blue\"\n                  type=\"submit\" [disabled]=\"loginForm.invalid\">\n            SIGN IN\n          </button>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n  <h1 style=\"text-align: lrft;font-size:25px\"><span style=\"font-size: 50px;\">e</span>-Office</h1>\n  <h2 style=\"border-style: solid;\">\n    OFFICE OF THE INSPECTOR GENERAL OF POLICE \n    <!-- <span style=\"text-align: center;margin-left: 225px;\">(PROHIBITION)</span> -->\n  </h2>\n  <h2 style=\"text-align: center;\">(PROHIBITION)</h2>\n\n  <h4 style=\"text-align: center;font-size: 34px;margin-top: -13px;width: 200p;\">Sardar Patel Bhavan,<br>\n   <span style=\"font-size: 30px;\">Belly Road, Patna.</span> \n  </h4>\n\n\n<div class=\"mdl-card mdl-card__blank-layout-card mdl-shadow--2dp\">\n  <div class=\"mdl-card__supporting-text color--dark-gray\">\n    <div class=\"mdl-grid\">\n      <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n        <span class=\"mdl-card__title-text text-color--smooth-gray\">PROHIBITION</span>\n      </div>\n      <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n        <span class=\"blank-layout-card-name text-color--white\">Sign in</span>\n        <span class=\"blank-layout-card-secondary-text text-color--smoke\">Enter fields to sign in to DARKBOARD</span>\n      </div>\n      <form class=\"login-form\" [formGroup]=\"loginForm\" (submit)=\"login()\" autocomplete=\"off\" novalidate>\n        <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n          <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size\"\n             >\n            <input formControlName=\"username\"\n                   (change)=\"onInputChange($event)\"\n                   class=\"mdl-textfield__input\" type=\"text\" id=\"username\">\n            <label class=\"mdl-textfield__label\" for=\"username\">username</label>\n\n          </div>\n\n          <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size\"\n               [class.is-invalid]=\"password.invalid && (password.dirty || password.touched)\"\n               [class.is-valid]=\"password.valid && (password.dirty || password.touched)\"\n               id=\"forPass\">\n            <input formControlName=\"password\"\n                   (change)=\"onInputChange($event)\"\n                   class=\"mdl-textfield__input\" type=\"password\" id=\"password\">\n            <label class=\"mdl-textfield__label\" for=\"password\">Password</label>\n            <div *ngIf=\"password.invalid && (password.dirty || password.touched)\">\n              <span *ngIf=\"password.errors.required\" class=\"mdl-textfield__error\">\n                Password is required.\n              </span>\n            </div>\n          </div>\n\n          <div class=\"full-size color-text--red\" *ngIf=\"error\"> {{ error }}</div>\n\n          <!-- <a routerLink=\"/pages/forgot-password\" class=\"blank-layout-card-link\">Forgot password?</a> -->\n        </div>\n        <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell\">\n          <a routerLink=\"/pages/sign-up\" class=\"blank-layout-card-link\">Don't have account?</a>\n          <div class=\"mdl-layout-spacer\"></div>\n          <button class=\"mdl-button mdl-js-button mdl-button--raised color--light-blue\"\n                  type=\"submit\" [disabled]=\"loginForm.invalid\">\n            SIGN IN\n          </button>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<ng-http-loader spinner=\"sk-wave\"></ng-http-loader>\n");
 
 /***/ }),
 
@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"mdl-card mdl-card__blank-layout-card mdl-shadow--2dp\">\n  <div class=\"mdl-card__supporting-text color--dark-gray\">\n    <div class=\"mdl-grid\">\n      <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n        <span class=\"mdl-card__title-text text-color--smooth-gray\">DARKBOARD</span>\n      </div>\n      <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n        <span class=\"blank-layout-card-name text-color--white\">Sign up</span>\n      </div>\n      <form class=\"login-form\" [formGroup]=\"signupForm\" (submit)=\"login()\" novalidate autocomplete=\"off\">\n        <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n          <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size\"\n               [class.is-invalid]=\"username.invalid && (username.dirty || username.touched)\"\n               [class.is-valid]=\"username.valid && (username.dirty || username.touched)\">\n            <input formControlName=\"username\"\n                   (change)=\"onInputChange($event)\"\n                   class=\"mdl-textfield__input\" type=\"text\" id=\"username\">\n            <label class=\"mdl-textfield__label\" for=\"username\">Name</label>\n\n            <div *ngIf=\"username.invalid && (username.dirty || username.touched)\">\n              <span *ngIf=\"username.errors.required\" class=\"mdl-textfield__error\">\n                Name is required. <span class=\"color-text--orange\"> Please, write any name.</span>\n              </span>\n            </div>\n          </div>\n          <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size\"\n               [class.is-invalid]=\"password.invalid && (password.dirty || password.touched)\"\n               [class.is-valid]=\"password.valid && (password.dirty || password.touched)\" id=\"forRass\">\n            <input formControlName=\"password\"\n                   (change)=\"onInputChange($event)\"\n                   class=\"mdl-textfield__input\" type=\"password\" id=\"password\">\n            <label class=\"mdl-textfield__label\" for=\"password\">Password</label>\n            <div *ngIf=\"password.invalid && (password.dirty || password.touched)\">\n              <span *ngIf=\"password.errors.required\" class=\"mdl-textfield__error\">\n                Password is required. <span class=\"color-text--orange\"> Please, write any password.</span>\n              </span>\n            </div>\n          </div>\n          <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size\"\n               [class.is-invalid]=\"email.invalid && (email.dirty || email.touched)\"\n               [class.is-valid]=\"email.valid && (email.dirty || email.touched)\">\n            <input formControlName=\"email\"\n                   pattern=\"{{emailPattern}}\"\n                   (change)=\"onInputChange($event)\"\n                   class=\"mdl-textfield__input\" type=\"text\" id=\"email\">\n            <label class=\"mdl-textfield__label\" for=\"email\">Email</label>\n\n            <div *ngIf=\"email.invalid && (email.dirty || email.touched)\">\n              <span *ngIf=\"email.errors.required\" class=\"mdl-textfield__error\">\n                Email is required. <span class=\"color-text--orange\"> Please, write any valid email.</span>\n              </span>\n              <span *ngIf=\"email.errors.pattern\" class=\"mdl-textfield__error\">\n                Email is invalid.\n              </span>\n            </div>\n          </div>\n\n          <label baseCheckbox color=\"light-blue\" class=\"checkbox--inline\" inline></label>\n          <span class=\"blank-layout-card-link\">I agree all statements in <a href=\"#\"\n                                                                            class=\"underlined\">terms of service</a></span>\n        </div>\n        <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell\">\n          <a routerLink=\"/pages/login\" class=\"blank-layout-card-link\">I have already signed up</a>\n          <div class=\"mdl-layout-spacer\"></div>\n          <button class=\"mdl-button mdl-js-button mdl-button--raised color--light-blue\"\n                  type=\"submit\" [disabled]=\"signupForm.invalid\">\n            SIGN UP\n          </button>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n  <h1 style=\"text-align: lrft;font-size:25px\"><span style=\"font-size: 50px;\">e</span>-Office</h1>\n  <h2 style=\"border-style: solid;\">\n    OFFICE OF THE INSPECTOR GENERAL OF POLICE \n    <!-- <span style=\"text-align: center;margin-left: 225px;\">(PROHIBITION)</span> -->\n  </h2>\n  <h2 style=\"text-align: center;\">(PROHIBITION)</h2>\n\n  <h4 style=\"text-align: center;font-size: 34px;margin-top: -13px;width: 200p;\">Sardar Patel Bhavan,<br>\n   <span style=\"font-size: 30px;\">Belly Road, Patna.</span> \n  </h4>\n\n<div class=\"mdl-card mdl-card__blank-layout-card mdl-shadow--2dp\">\n  <div class=\"mdl-card__supporting-text color--dark-gray\">\n    <div class=\"mdl-grid\">\n      <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n        <span class=\"mdl-card__title-text text-color--smooth-gray\">PROHIBITON </span>\n      </div>\n      <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n        <span class=\"blank-layout-card-name text-color--white\">Sign up</span>\n      </div>\n      <form class=\"login-form\" [formGroup]=\"signupForm\" (submit)=\"login()\" novalidate autocomplete=\"off\">\n        <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone\">\n          <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size\"\n               [class.is-invalid]=\"username.invalid && (username.dirty || username.touched)\"\n               [class.is-valid]=\"username.valid && (username.dirty || username.touched)\">\n            <input formControlName=\"username\"\n                   (change)=\"onInputChange($event)\"\n                   class=\"mdl-textfield__input\" type=\"text\" id=\"username\">\n            <label class=\"mdl-textfield__label\" for=\"username\">Username</label>\n\n            <div *ngIf=\"username.invalid && (username.dirty || username.touched)\">\n              <span *ngIf=\"username.errors.required\" class=\"mdl-textfield__error\">\n                username is required\n                <!-- Name is required. <span class=\"color-text--orange\"> Please, write any name.</span> -->\n              </span>\n            </div>\n          </div>\n          <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size\"\n               [class.is-invalid]=\"password.invalid && (password.dirty || password.touched)\"\n               [class.is-valid]=\"password.valid && (password.dirty || password.touched)\" id=\"forRass\">\n            <input formControlName=\"password\"\n                   (change)=\"onInputChange($event)\"\n                   class=\"mdl-textfield__input\" type=\"password\" id=\"password\">\n            <label class=\"mdl-textfield__label\" for=\"password\">Password</label>\n            <div *ngIf=\"password.invalid && (password.dirty || password.touched)\">\n              <span *ngIf=\"password.errors.required\" class=\"mdl-textfield__error\">\n                Password is required.\n                <!-- Password is required. <span class=\"color-text--orange\"> Please, write any password.</span> -->\n              </span>\n            </div>\n          </div>\n          <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size\"\n              >\n            <input formControlName=\"confirmPassword\"\n                   (change)=\"onInputChange($event)\"\n                   class=\"mdl-textfield__input\" type=\"password\" id=\"confirmPassword\">\n            <label class=\"mdl-textfield__label\" for=\"confirmPassword\">Confirm Password</label>\n\n           \n          </div>\n\n          <label baseCheckbox color=\"light-blue\" class=\"checkbox--inline\" inline></label>\n          <span class=\"blank-layout-card-link\">I agree all statements in <a href=\"#\"\n                                                                            class=\"underlined\">terms of service</a></span>\n        </div>\n        <div class=\"mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell\">\n          <a routerLink=\"/pages/login\" class=\"blank-layout-card-link\">I have already signed up</a>\n          <div class=\"mdl-layout-spacer\"></div>\n          <button class=\"mdl-button mdl-js-button mdl-button--raised color--light-blue\"\n                  type=\"submit\" [disabled]=\"signupForm.invalid\">\n            SIGN UP\n          </button>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -241,6 +241,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var app_components_blank_layout_card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! app/components/blank-layout-card */ "./src/app/components/blank-layout-card/index.ts");
 /* harmony import */ var _services_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/auth */ "./src/app/services/auth/index.ts");
+/* harmony import */ var ng_http_loader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ng-http-loader */ "./node_modules/ng-http-loader/__ivy_ngcc__/fesm2015/ng-http-loader.js");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -271,23 +272,21 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
 var LoginComponent = /** @class */ (function (_super) {
     __extends(LoginComponent, _super);
-    function LoginComponent(authService, fb, router) {
+    function LoginComponent(authService, spinner, fb, router) {
         var _this = _super.call(this) || this;
         _this.authService = authService;
+        _this.spinner = spinner;
         _this.fb = fb;
         _this.router = router;
         _this.emailPattern = '^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$';
         _this.loginForm = _this.fb.group({
+            username: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required),
             password: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required),
-            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern(_this.emailPattern),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].maxLength(20),
-            ]),
         });
-        _this.email = _this.loginForm.get('email');
+        _this.username = _this.loginForm.get('username');
         _this.password = _this.loginForm.get('password');
         return _this;
     }
@@ -300,10 +299,16 @@ var LoginComponent = /** @class */ (function (_super) {
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
+        this.spinner.show();
         this.error = null;
         if (this.loginForm.valid) {
             this.authService.login(this.loginForm.getRawValue())
-                .subscribe(function (res) { return _this.router.navigate(['/app/dashboard']); }, function (error) { return _this.error = error.message; });
+                .subscribe(function (res) {
+                if (res) {
+                    _this.router.navigate(['/app/dashboard']);
+                }
+            });
+            this.spinner.hide();
         }
     };
     LoginComponent.prototype.onInputChange = function (event) {
@@ -311,6 +316,7 @@ var LoginComponent = /** @class */ (function (_super) {
     };
     LoginComponent.ctorParameters = function () { return [
         { type: _services_auth__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
+        { type: ng_http_loader__WEBPACK_IMPORTED_MODULE_5__["SpinnerVisibilityService"] },
         { type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
     ]; };
@@ -321,6 +327,7 @@ var LoginComponent = /** @class */ (function (_super) {
             styles: [__importDefault(__webpack_require__(/*! ../../../components/blank-layout-card/blank-layout-card.component.scss */ "./src/app/components/blank-layout-card/blank-layout-card.component.scss")).default]
         }),
         __metadata("design:paramtypes", [_services_auth__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
+            ng_http_loader__WEBPACK_IMPORTED_MODULE_5__["SpinnerVisibilityService"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], LoginComponent);
@@ -414,12 +421,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./login */ "./src/app/pages/pages/login/index.ts");
 /* harmony import */ var _pages_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages-routing.module */ "./src/app/pages/pages/pages-routing.module.ts");
 /* harmony import */ var _sign_up__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./sign-up */ "./src/app/pages/pages/sign-up/index.ts");
+/* harmony import */ var ng_http_loader__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ng-http-loader */ "./node_modules/ng-http-loader/__ivy_ngcc__/fesm2015/ng-http-loader.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -442,6 +451,7 @@ var PagesModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
                 _theme_directives_tooltip_tooltip_module__WEBPACK_IMPORTED_MODULE_4__["TooltipModule"],
+                ng_http_loader__WEBPACK_IMPORTED_MODULE_10__["NgHttpLoaderModule"].forRoot(),
             ],
             declarations: [
                 _error__WEBPACK_IMPORTED_MODULE_5__["ErrorComponent"],
@@ -530,16 +540,11 @@ var SignUpComponent = /** @class */ (function (_super) {
         _this.emailPattern = '^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$';
         _this.signupForm = _this.fb.group({
             password: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required),
-            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern(_this.emailPattern),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].maxLength(20),
-            ]),
+            confirmPassword: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required),
             username: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].maxLength(10)]),
         });
-        _this.email = _this.signupForm.get('email');
-        _this.password = _this.signupForm.get('password');
         _this.username = _this.signupForm.get('username');
+        _this.password = _this.signupForm.get('password');
         return _this;
     }
     SignUpComponent.prototype.ngOnInit = function () {
@@ -554,7 +559,12 @@ var SignUpComponent = /** @class */ (function (_super) {
         this.error = null;
         if (this.signupForm.valid) {
             this.authService.signup(this.signupForm.getRawValue())
-                .subscribe(function (res) { return _this.router.navigate(['/app/dashboard']); }, function (error) { return _this.error = error.message; });
+                .subscribe(function (res) {
+                console.log(res);
+                if (res) {
+                    _this.router.navigate(['/app/dashboard']);
+                }
+            });
         }
     };
     SignUpComponent.prototype.onInputChange = function (event) {
