@@ -18,6 +18,9 @@ const passport = require('passport');
 const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
+var cors = require("cors")
+const fileUpload = require('express-fileupload');
+
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
@@ -33,6 +36,8 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+const sectionControl = require('./controllers/section');
+
 
 /**
  * API keys and Passport configuration.
@@ -44,6 +49,16 @@ const passportConfig = require('./config/passport');
  */
 const app = express();
 
+app.use(cors({credentials: true, origin: true}))
+app.use(function (req, res, next) {
+    // res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, x-access-token, x-email-id, x-device-id, x-device-token, x-device-type, role, role-region, admin, user-id, type, userid, self, systemIPInfo')
+    res.header('Access-Control-Expose-Headers', 'organizationId, cardConfigVersion')
+    if (req.method === 'OPTIONS') return res.send(200)
+    next()
+  })
+  
 /**
  * Connect to MongoDB.
  */
@@ -51,7 +66,8 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb+srv://admin:admin@cluster0.tdyon.mongodb.net/prohitibiton_test?retryWrites=true&w=majority')
+// mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
@@ -61,6 +77,8 @@ mongoose.connection.on('error', (err) => {
 /**
  * Express configuration.
  */
+
+app.use(fileUpload());
 app.set('host', process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0');
 app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080);
 app.set('views', path.join(__dirname, 'views'));
@@ -155,6 +173,16 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
+
+// Section Control API
+
+app.post('/section/add', sectionControl.postSection);
+app.post('/section/uploadFile', sectionControl.uploadFile);
+app.get('/section/getsection', sectionControl.getSection);
+app.post('/section/editsection', sectionControl.editSection);
+
+
+
 /**
  * API examples routes.
  */
@@ -182,7 +210,7 @@ app.get('/api/paypal/success', apiController.getPayPalSuccess);
 app.get('/api/paypal/cancel', apiController.getPayPalCancel);
 app.get('/api/lob', apiController.getLob);
 app.get('/api/upload', lusca({ csrf: false }), apiController.getFileUpload);
-app.post('/api/upload', upload.single('myFile'), lusca({ csrf: false }), apiController.postFileUpload);
+app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
 app.get('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.getPinterest);
 app.post('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.postPinterest);
 app.get('/api/here-maps', apiController.getHereMaps);
@@ -268,7 +296,7 @@ if (process.env.NODE_ENV === 'development') {
 /**
  * Start Express server.
  */
-app.listen(app.get('port'), () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
   console.log('  Press CTRL-C to stop\n');
 });

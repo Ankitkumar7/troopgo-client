@@ -16,6 +16,7 @@ const { google } = require('googleapis');
 const Quickbooks = require('node-quickbooks');
 const validator = require('validator');
 
+var multer  = require('multer')
 Quickbooks.setOauthVersion('2.0');
 
 /**
@@ -696,8 +697,9 @@ exports.getFileUpload = (req, res) => {
 };
 
 exports.postFileUpload = (req, res) => {
-  req.flash('success', { msg: 'File was uploaded successfully.' });
-  res.redirect('/api/upload');
+  console.log(req.files.file);
+  // req.flash('success', { msg: 'File was uploaded successfully.' });
+  // res.redirect('/api/upload');
 };
 
 /**

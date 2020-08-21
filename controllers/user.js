@@ -8,6 +8,7 @@ const mailChecker = require('mailchecker');
 const User = require('../models/User');
 
 const randomBytesAsync = promisify(crypto.randomBytes);
+var jwt = require('jsonwebtoken');
 
 /**
  * GET /login
@@ -28,15 +29,13 @@ exports.getLogin = (req, res) => {
  */
 exports.postLogin = (req, res, next) => {
   const validationErrors = [];
-  if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
+  // if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
   if (validator.isEmpty(req.body.password)) validationErrors.push({ msg: 'Password cannot be blank.' });
 
   if (validationErrors.length) {
     req.flash('errors', validationErrors);
     return res.send({messsage: validationErrors, status: 'failed'});
   }
-  req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
-
   passport.authenticate('local', (err, user, info) => {
     if (err) { return next(err); }
     if (!user) {
@@ -46,7 +45,7 @@ exports.postLogin = (req, res, next) => {
     req.logIn(user, (err) => {
       if (err) { return next(err); }
       req.flash('success', { msg: 'Success! You are logged in.' });
-      res.send(user);
+      res.send({user:user});
     });
   })(req, res, next);
 };
@@ -60,7 +59,7 @@ exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) console.log('Error : Failed to destroy the session during logout.', err);
     req.user = null;
-    res.redirect('/');
+    res.send(req.user);
   });
 };
 
@@ -83,7 +82,7 @@ exports.getSignup = (req, res) => {
  */
 exports.postSignup = (req, res, next) => {
   const validationErrors = [];
-  if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
+  // if (!validator.isEmail(req.body.username)) validationErrors.push({ msg: 'Please enter a valid email address.' });
   if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' });
   if (req.body.password !== req.body.confirmPassword) validationErrors.push({ msg: 'Passwords do not match' });
 
@@ -91,18 +90,23 @@ exports.postSignup = (req, res, next) => {
     req.flash('errors', validationErrors);
     return res.send({error:validationErrors});
   }
-  req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
-
-  const user = new User({
-    email: req.body.email,
+  // req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
+  const tokenJson = {
+    username: req.body.username,
     password: req.body.password
+  }
+  var token = jwt.sign(tokenJson, 'secret');
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password,
+    tokens: token
   });
 
-  User.findOne({ email: req.body.email }, (err, existingUser) => {
+  User.findOne({ username: req.body.username }, (err, existingUser) => {
     if (err) { return next(err); }
     if (existingUser) {
-      req.flash('errors', { msg: 'Account with that email address already exists.' });
-      return res.send({message: 'Account with that email address already exists.', status: 'failed'});
+      req.flash('errors', { msg: 'Account with that username  already exists.' });
+      return res.send({message: 'Account with that username  already exists.', status: 'failed'});
     }
     user.save((err) => {
       if (err) { return next(err); }
@@ -110,7 +114,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        res.send({message: 'User Successfully Created', status: 'success'});
+        res.send({user:user});
       });
     });
   });
