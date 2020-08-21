@@ -62,12 +62,12 @@ app.use(function (req, res, next) {
 /**
  * Connect to MongoDB.
  */
-// mongoose.set('useFindAndModify', false);
+mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-// mongoose.set('useNewUrlParser', true);
-// mongoose.set('useUnifiedTopology', true);
-mongoose.connect('mongodb+srv://admin:admin@cluster0.tdyon.mongodb.net/prohitibiton_test?retryWrites=true&w=majority')
-// mongoose.connect(process.env.MONGODB_URI);
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+// mongoose.connect('mongodb+srv://admin:admin@cluster0.tdyon.mongodb.net/prohitibiton_test?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
