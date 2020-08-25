@@ -2136,6 +2136,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _right_sidebar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./right-sidebar */ "./src/app/pages/ui/right-sidebar/index.ts");
 /* harmony import */ var _typography__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./typography */ "./src/app/pages/ui/typography/index.ts");
 /* harmony import */ var _ui_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ui-routing.module */ "./src/app/pages/ui/ui-routing.module.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/animations.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/dialog.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2155,6 +2157,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // import { TablesComponent, TablesService } from './tables';
 
 
+
+
 var UIModule = /** @class */ (function () {
     function UIModule() {
     }
@@ -2166,6 +2170,8 @@ var UIModule = /** @class */ (function () {
                 theme__WEBPACK_IMPORTED_MODULE_3__["ThemeModule"],
                 material_angular_select__WEBPACK_IMPORTED_MODULE_2__["MaterialAngularSelectModule"],
                 _right_sidebar__WEBPACK_IMPORTED_MODULE_9__["RightSidebarModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["BrowserAnimationsModule"],
+                _angular_material_dialog__WEBPACK_IMPORTED_MODULE_13__["MatDialog"]
             ],
             declarations: [
                 _buttons__WEBPACK_IMPORTED_MODULE_4__["ButtonsComponent"],

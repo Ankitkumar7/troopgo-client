@@ -23,6 +23,27 @@ exports.getLogin = (req, res) => {
   });
 };
 
+exports.editPermission = (req, res, next) => {
+  toQuery = {username: req && req.query && req.query.username}
+  toUpdate = req.body
+  User
+    .findOneAndUpdate(toQuery, {$set: toUpdate})
+    .exec((err, section) => {
+      if (err) { return next(err); }
+      res.send({data:section})
+    });
+}
+
+exports.setUser = (req, res, next) => {
+  toQuery = {username: req && req.query && req.query.username}
+  User
+    .findOneAndUpdate(toQuery, {$set: {online: req.query.status}})
+    .exec((err, section) => {
+      if (err) { return next(err); }
+      res.send({data:section})
+    });
+}
+
 /**
  * POST /login
  * Sign in using email and password.
@@ -58,6 +79,7 @@ exports.logout = (req, res) => {
   req.logout();
   req.session.destroy((err) => {
     if (err) console.log('Error : Failed to destroy the session during logout.', err);
+
     req.user = null;
     res.send(req.user);
   });
@@ -74,6 +96,28 @@ exports.getSignup = (req, res) => {
   res.render('account/signup', {
     title: 'Create Account'
   });
+};
+
+
+exports.getAllUsers = (req, res) => {
+  userName = req && req.query && req.query.username || 'undefined';
+  if(userName === 'undefined') {
+    User
+    .find().limit().sort({_id:-1})
+    .exec((err, user) => {
+      if (err) { return next(err); }
+      res.send({data:user})
+    });
+  } else {
+    User
+    .findOne({username: userName}).sort({_id:-1})
+    .exec((err, user) => {
+      if (err) { return next(err); }
+      res.send({data:user})
+    });
+  }
+ 
+    
 };
 
 /**
@@ -93,13 +137,16 @@ exports.postSignup = (req, res, next) => {
   // req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
   const tokenJson = {
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    online: true,
   }
   var token = jwt.sign(tokenJson, 'secret');
   const user = new User({
     username: req.body.username,
     password: req.body.password,
-    tokens: token
+    tokens: token,
+    isActive: false,
+    role:'general'
   });
 
   User.findOne({ username: req.body.username }, (err, existingUser) => {

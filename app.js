@@ -189,6 +189,12 @@ app.post('/section/add', sectionControl.postSection);
 app.post('/section/uploadFile', sectionControl.uploadFile);
 app.get('/section/getsection', sectionControl.getSection);
 app.post('/section/editsection', sectionControl.editSection);
+app.get('/section/addreview', sectionControl.reviewSection);
+app.get('/section/filtersection', sectionControl.getSectionByFilter);
+app.get('/section/allusers', userController.getAllUsers)
+app.post('/section/editpermission', userController.editPermission);
+app.get('/section/setuser', userController.setUser)
+
 
 
 

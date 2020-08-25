@@ -30,26 +30,81 @@ exports.editSection = (req, res, next) => {
     });
 }
 
+exports.reviewSection = (req, res, next) => {
+  toUpdate = {reviewComment:req.query.reviewComment, reviewBy: req.query.reviewBy}
+  id = req.query.id
+  Section
+    .findOneAndUpdate({_id: id}, {$set: toUpdate})
+    .exec((err, section) => {
+      if (err) { return next(err); }
+      res.send({data:section})
+    });
+}
+
+exports.getSectionByFilter = (req, res, next) => {
+    filterObj = {}
+    if(req && req.query && req.query.createdBy !== 'undefined') {
+      filterObj['createdBy'] = req && req.query && req.query.createdBy;
+    }
+    filterObj['type'] = req && req.query && req.query.type;
+    if(req && req.query && req.query.month !== 'null') {
+      filterObj['month'] = req.query.month
+    }
+    console.log(req.query);
+    if(req && req.query && req.query.year !== 'null') {
+      filterObj['year'] = req.query.year
+    }
+
+  Section
+  .find(filterObj)
+  .exec((err, section) => {
+    if (err) { return next(err); }
+    res.send({data:section})
+  });
+
+  // let result = Section.find({type: type, createdBy: createdBy}).limit(5).sort({_id:-1})
+  //  res.status(200).json(result);
+}
+
 
 
 exports.getSection = (req, res, next) => {
+  
   let type = req && req.query && req.query.type;
   let createdBy = req && req.query && req.query.createdBy;
   let limit = req && req.query && req.query.limit;
-  if(Number(limit) === 0) {
-    Section
-    .find({type:type, createdBy: createdBy}).sort({_id:-1})
-    .exec((err, section) => {
-      if (err) { return next(err); }
-      res.send({data:section})
-    });
+  if(createdBy) {
+    if(Number(limit) === 0) {
+      Section
+      .find({type:type, createdBy: createdBy}).sort({_id:-1})
+      .exec((err, section) => {
+        if (err) { return next(err); }
+        res.send({data:section})
+      });
+    } else {
+      Section
+      .find({type:type, createdBy: createdBy}).limit(Number(limit)).sort({_id:-1})
+      .exec((err, section) => {
+        if (err) { return next(err); }
+        res.send({data:section})
+      });
+    }
   } else {
-    Section
-    .find({type:type, createdBy: createdBy}).limit(Number(limit)).sort({_id:-1})
-    .exec((err, section) => {
-      if (err) { return next(err); }
-      res.send({data:section})
-    });
+    if(Number(limit) === 0) {
+      Section
+      .find({type:type}).sort({_id:-1})
+      .exec((err, section) => {
+        if (err) { return next(err); }
+        res.send({data:section})
+      });
+    } else {
+      Section
+      .find({type:type}).limit(Number(limit)).sort({_id:-1})
+      .exec((err, section) => {
+        if (err) { return next(err); }
+        res.send({data:section})
+      });
+    }
   }
 
   // let result = Section.find({type: type, createdBy: createdBy}).limit(5).sort({_id:-1})

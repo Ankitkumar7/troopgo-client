@@ -1,23 +1,20 @@
 const mongoose = require('mongoose');
 
 const sectionSchema = new mongoose.Schema({
-    fileName: {
+    title: {
         type: String,
     },
     dateOfSubmission: {
         type: String,
     },
-    letterNumber: {
-        type: String
+    year: {
+        type: String,
     },
-    letterDate: {
-        type: String
-    },
-    subject: {
+    month: {
         type: String
     },
     fileUrl: {
-        type: String
+        type: Array
     },
     type: {
         type: String
@@ -34,6 +31,12 @@ const sectionSchema = new mongoose.Schema({
     },
     reason: {
         type: String,
+    }, 
+    reviewComment: {
+        type: String
+    },
+    reviewBy: {
+        type: String
     }
 })
 

@@ -9,6 +9,53 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   emailVerificationToken: String,
   emailVerified: Boolean,
+  isActive: Boolean,
+  role: String,
+  online: Boolean,
+  reserveSection: {
+    type: Boolean,
+    default: false,
+  },
+  statisticalSection: {
+    type: Boolean,
+    default: false,
+  },
+  disciplinarySection: {
+    type: Boolean,
+    default: false,
+  },
+  monitoringSection: {
+    type: Boolean,
+    default: false,
+  },
+  prosecutionSection: {
+    type: Boolean,
+    default: false,
+  },
+  operationSection: {
+    type: Boolean,
+    default: false,
+  },
+  investigationSection: {
+    type: Boolean,
+    default: false,
+  },
+  genralSection: {
+    type: Boolean,
+    default: false,
+  },
+  intelligenceSection: {
+    type: Boolean,
+    default: false,
+  },
+  confidentialSection: {
+    type: Boolean,
+    default: false,
+  },
+  otherSection: {
+    type: Boolean,
+    default: false,
+  },
 
   snapchat: String,
   facebook: String,
