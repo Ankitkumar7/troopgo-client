@@ -67,14 +67,15 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 // mongoose.connect('mongodb+srv://admin:admin@cluster0.tdyon.mongodb.net/prohitibiton_test?retryWrites=true&w=majority')
-if(process.env.ENVIRONMENT === 'DEV') {
-  console.log('Local DB Connected ', chalk.green('✓ ✓ ✓ '))
-  mongoose.connect(process.env.LOCAL_MONGODB_URI);
-} else if(process.env.ENVIRONMENT === 'PROD') {
-  console.log('PROD DB Connected ', chalk.green('✓ ✓ ✓ '))
+// if(process.env.ENVIRONMENT === 'DEV') {
+//   console.log('Local DB Connected ', chalk.green('✓ ✓ ✓ '))
+//   mongoose.connect(process.env.LOCAL_MONGODB_URI);
+// } else if(process.env.ENVIRONMENT === 'PROD') {
+//   console.log('PROD DB Connected ', chalk.green('✓ ✓ ✓ '))
+//   mongoose.connect(process.env.PROD_MONGODB_URI);
 
-  mongoose.connect(process.env.PROD_MONGODB_URI);
-}
+// }
+mongoose.connect("mongodb+srv://admin:admin@cluster0.tdyon.mongodb.net/prohitibiton?retryWrites=true&w=majority");
 
 
 mongoose.connection.on('error', (err) => {
@@ -313,18 +314,18 @@ if (process.env.NODE_ENV === 'development') {
  */
 
 
-if(process.env.ENVIRONMENT === 'DEV') {
-  app.listen(app.get('port'), () => {
-    console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
-    console.log('  Press CTRL-C to stop\n');
-  });
+// if(process.env.ENVIRONMENT === 'DEV') {
+//   app.listen(app.get('port'), () => {
+//     console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
+//     console.log('  Press CTRL-C to stop\n');
+//   });
   
-} else if(process.env.ENVIRONMENT === 'PROD') {
-  app.listen(process.env.PORT || 8080, () => {
-    console.log('%s App is running https://madhnished.herokuapp.com:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
-    console.log('  Press CTRL-C to stop\n');
-  });
+// } else if(process.env.ENVIRONMENT === 'PROD') {
   
-}
+// }
+    app.listen(process.env.PORT || 8080, () => {
+      console.log('%s App is running https://madhnished.herokuapp.com:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
+      console.log('  Press CTRL-C to stop\n');
+    });
 
 module.exports = app;
