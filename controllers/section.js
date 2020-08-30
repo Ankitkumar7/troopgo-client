@@ -1,4 +1,5 @@
 const Section = require('../models/section_model');
+const distrct = require('../models/districts_model')
 var cloudinary = require('cloudinary');
 const path = require('path');
 const fs = require('fs')
@@ -138,4 +139,14 @@ exports.uploadFile = (req, res, next) => {
             res.status(200).json(result);
         });
     
+}
+
+
+exports.districts = (req, res, next) => {
+  distrct
+    .find({}, {district: 1})
+    .exec((err, district) => {
+      if (err) { return next(err); }
+      res.send({data:district})
+    });
 }
