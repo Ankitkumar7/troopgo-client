@@ -77,7 +77,7 @@ mongoose.set('useUnifiedTopology', true);
 
 // }
 mongoose.connect("mongodb+srv://admin:admin@cluster0.tdyon.mongodb.net/prohibition?retryWrites=true&w=majority");
-
+// mongoose.connect("mongodb://localhost:27017/test");
 
 mongoose.connection.on('error', (err) => {
   console.error(err);
@@ -195,9 +195,9 @@ app.get('/section/addreview', sectionControl.reviewSection);
 app.get('/section/filtersection', sectionControl.getSectionByFilter);
 app.get('/section/allusers', userController.getAllUsers)
 app.post('/section/editpermission', userController.editPermission);
-app.get('/section/setuser', userController.setUser)
-app.get('/section/district', sectionControl.districts)
-
+app.get('/section/setuser', userController.setUser);
+app.get('/section/district', sectionControl.districts);
+app.get('/section/delete', sectionControl.deleteSection);
 
 
 

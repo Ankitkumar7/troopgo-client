@@ -31,6 +31,16 @@ exports.editSection = (req, res, next) => {
     });
 }
 
+exports.deleteSection = (req, res, next) => {
+  const _id = req && req.query && req.query.id;
+  Section
+    .findByIdAndRemove({_id: _id})
+    .exec((err, section) => {
+      if (err) { return next(err); }
+      res.send({status:'success'})
+    });
+}
+
 exports.reviewSection = (req, res, next) => {
   toUpdate = {reviewComment:req.query.reviewComment, reviewBy: req.query.reviewBy}
   id = req.query.id
